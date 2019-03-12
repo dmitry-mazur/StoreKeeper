@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import Toast_Swift
 
 class LoginViewController: UIViewController {
     
@@ -14,6 +16,7 @@ class LoginViewController: UIViewController {
     var passwordTextField = LoginTextField()
     var loginButton = UIButton()
     var registerLabel = UILabel()
+    let accountManager = AccountManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +26,13 @@ class LoginViewController: UIViewController {
         configureLoginFields()
         configureLoginButton()
         configureRegisterLabel()
+        accountManager.parentViewController = self
+        let email = UserDefaults.standard.object(forKey: "email") ?? ""
+        print("1 \(email)")
+        let password = UserDefaults.standard.object(forKey: "password") ?? ""
+        print("2 \(password)")
+        loginTextField.text = email as! String
+        passwordTextField.text = password as! String
     }
     
     func configureLoginFields(){
@@ -47,7 +57,24 @@ class LoginViewController: UIViewController {
         loginButton.setTitle("LOGIN", for: .normal)
         loginButton.setTitleColor(UIColor(named: "Background"), for: .normal)
         loginButton.titleLabel?.font = UIFont(name: Global.Fonts.fontHN_Bold, size: loginButton.titleLabel!.font.pointSize)
+        loginButton.addTarget(self, action: #selector(loginRequest), for: .touchUpInside)
         self.view.addSubview(loginButton)
+    }
+    
+    @objc func loginRequest(){
+        guard let email = loginTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+        
+        if (email == "" || password == "") {
+            self.view.makeToast("Fill in the required fields", duration: 3.0, position: .bottom)
+        }
+        
+        let params : Parameters = ["email" : email,
+                                   "password" : password
+        ]
+        
+        accountManager.login(api: "\(Global.AppUrl.url)/users/login", params: params)
+        
     }
     
     func configureRegisterLabel(){

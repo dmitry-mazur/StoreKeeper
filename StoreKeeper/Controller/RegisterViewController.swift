@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import Toast_Swift
 
 class RegisterViewController: UIViewController {
     
@@ -75,14 +76,35 @@ class RegisterViewController: UIViewController {
     }
     
     @objc func registerRequest(){
-        let params : Parameters = ["email" : "123",
-                                   "name" : "123",
-                                   "password" : "123",
+        guard let email = loginTextField.text else { return }
+        guard let name = usernameTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+        
+        if (email == "" || name == "" || password == "") {
+            self.view.makeToast("Fill in the required fields", duration: 3.0, position: .bottom)
+            return
+        }
+        
+        let params : Parameters = ["email" : email,
+                                   "name" : name,
+                                   "password" : password,
                                    "is_keeper" : adminCheck.isOn
         ]
         
         Alamofire.request("\(Global.AppUrl.url)/users/sign_up", method: .post, parameters: params, encoding: URLEncoding.default, headers: nil).responseJSON { response in
-            print(response)
+            switch response.result {
+            case .success(_):
+                guard let statusCode = response.response?.statusCode else { return }
+                if statusCode == 200 {
+                    print(response)
+                    print(statusCode)
+                } else {
+                    print(statusCode)
+                    self.view.makeToast("A user with this email already exists", duration: 3.0, position: .bottom)
+                }
+            case .failure(let error):
+                print(error)
+            }
         }
     }
     
