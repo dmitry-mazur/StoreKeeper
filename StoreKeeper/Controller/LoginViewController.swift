@@ -27,12 +27,14 @@ class LoginViewController: UIViewController {
         configureLoginButton()
         configureRegisterLabel()
         accountManager.parentViewController = self
-        let email = UserDefaults.standard.object(forKey: "email") ?? ""
-        print("1 \(email)")
-        let password = UserDefaults.standard.object(forKey: "password") ?? ""
-        print("2 \(password)")
-        loginTextField.text = email as! String
-        passwordTextField.text = password as! String
+        let email = (UserDefaults.standard.object(forKey: "email") ?? "") as! String
+        let password = (UserDefaults.standard.object(forKey: "password") ?? "") as! String
+        if (email != "" && password != ""){
+            let params: Parameters = ["email": email, "password": password]
+            loginTextField.text = email
+            passwordTextField.text = password
+            accountManager.login(params: params)
+        }
     }
     
     func configureLoginFields(){
@@ -73,7 +75,7 @@ class LoginViewController: UIViewController {
                                    "password" : password
         ]
         
-        accountManager.login(api: "\(Global.AppUrl.url)/users/login", params: params)
+        accountManager.login(params: params)
         
     }
     

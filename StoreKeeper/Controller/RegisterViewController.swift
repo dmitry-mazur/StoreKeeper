@@ -18,7 +18,7 @@ class RegisterViewController: UIViewController {
     var adminCheck = UISwitch()
     var registerButton = UIButton()
     var loginLabel = UILabel()
-    let api = "https://stark-hamlet-26364.herokuapp.com/"
+    let accountManager = AccountManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,22 +90,8 @@ class RegisterViewController: UIViewController {
                                    "password" : password,
                                    "is_keeper" : adminCheck.isOn
         ]
-        
-        Alamofire.request("\(Global.AppUrl.url)/users/sign_up", method: .post, parameters: params, encoding: URLEncoding.default, headers: nil).responseJSON { response in
-            switch response.result {
-            case .success(_):
-                guard let statusCode = response.response?.statusCode else { return }
-                if statusCode == 200 {
-                    print(response)
-                    print(statusCode)
-                } else {
-                    print(statusCode)
-                    self.view.makeToast("A user with this email already exists", duration: 3.0, position: .bottom)
-                }
-            case .failure(let error):
-                print(error)
-            }
-        }
+
+        accountManager.register(params: params)
     }
     
     func configureLoginLabel(){

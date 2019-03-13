@@ -14,7 +14,7 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="StoreKeeper" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginView" id="BYZ-38-t0r" customClass="LoginViewController" customModule="StoreKeeper" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -34,7 +34,7 @@
         <!--User View Controller-->
         <scene sceneID="vRD-Xv-cwN">
             <objects>
-                <viewController storyboardIdentifier="userViewController" id="jRC-uY-pGw" customClass="UserViewController" customModule="StoreKeeper" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="userView" id="jRC-uY-pGw" customClass="UserViewController" customModule="StoreKeeper" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cgP-iU-fND">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -67,7 +67,7 @@
         <!--Admin View Controller-->
         <scene sceneID="Yg9-0k-qO9">
             <objects>
-                <viewController storyboardIdentifier="adminViewController" id="CNL-kL-JKT" customClass="AdminViewController" customModule="StoreKeeper" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="adminView" id="CNL-kL-JKT" customClass="AdminViewController" customModule="StoreKeeper" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="m77-vt-up0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

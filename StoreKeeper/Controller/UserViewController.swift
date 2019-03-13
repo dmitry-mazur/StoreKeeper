@@ -14,17 +14,20 @@ class UserViewController: UIViewController {
     let roomNumbers = ["303", "410", "409", "408"]
     let itemsTable = UITableView()
     let items = ["1", "1", "1", "1", "1", "1"]
+    let accountManager = AccountManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor(named: "Background")
         
+        accountManager.parentViewController = self
         configureRoomNumbersTable()
         configureItemsTable()
         let line = UIView(frame: CGRect(x: roomNumbersTable.frame.width, y: UIApplication.shared.statusBarFrame.height, width: 0.5, height: UIScreen.main.bounds.height))
         line.backgroundColor = UIColor(named: "Accent")
         self.view.addSubview(line)
+        accountManager.logout()
     }
     
     func configureRoomNumbersTable() {
