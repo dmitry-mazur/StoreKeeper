@@ -10,10 +10,16 @@ import UIKit
 
 class RoomNumberCell: UITableViewCell {
     
+    let backView = UIView()
     let numberLabel = UILabel()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        backView.frame.origin = CGPoint(x: 4, y: 4)
+        backView.backgroundColor = #colorLiteral(red: 0.968627451, green: 0.9529411765, blue: 0.831372549, alpha: 1)
+        backView.layer.cornerRadius = 4
+        self.addSubview(backView)
         
         numberLabel.frame.origin = CGPoint(x: 0, y: 0)
         numberLabel.font = UIFont(name: "HelveticaNeue", size: 35)
@@ -21,13 +27,15 @@ class RoomNumberCell: UITableViewCell {
         numberLabel.minimumScaleFactor = 0.25
         numberLabel.textColor = UIColor(named: "Accent")
         numberLabel.textAlignment = .center
-        self.addSubview(numberLabel)
+        backView.addSubview(numberLabel)
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        numberLabel.frame.size = self.frame.size
+        backView.frame.size = CGSize(width: self.frame.size.width - 8, height: self.frame.size.height - 8)
+        backView.dropShadow(color: .black, offSet: CGSize(width: 0, height: 1), cornerRadius: 4)
+        numberLabel.frame.size = backView.frame.size
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -39,20 +47,26 @@ class ItemCell: UITableViewCell {
     
     let itemImage = UIImageView()
     let stepper = CustomStepper()
+    let backView = UIView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        self.addSubview(itemImage)
-        self.addSubview(stepper)
+        backView.backgroundColor = #colorLiteral(red: 0.968627451, green: 0.9529411765, blue: 0.831372549, alpha: 1)
+        backView.layer.cornerRadius = 4
+        self.addSubview(backView)
+        backView.addSubview(itemImage)
+        backView.addSubview(stepper)
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        itemImage.frame = CGRect(x: 16, y: 16, width: self.frame.height - 32, height: self.frame.height - 32)
-        stepper.frame.size = CGSize(width: self.frame.width * 0.5, height: self.frame.height * 0.4)
-        stepper.frame.origin = CGPoint(x: self.frame.width - stepper.frame.width - 8, y: (self.frame.height - stepper.frame.height)/2.0)
+        backView.frame = CGRect(x: 4, y: 4, width: self.frame.width - 8, height: self.frame.height - 8)
+        backView.dropShadow(color: .black, offSet: CGSize(width: 0, height: 1), cornerRadius: 4)
+        itemImage.frame = CGRect(x: 8, y: 8, width: backView.frame.height - 16, height: backView.frame.height - 16)
+        stepper.frame.size = CGSize(width: backView.frame.width * 0.5, height: backView.frame.height * 0.5)
+        stepper.frame.origin = CGPoint(x: backView.frame.width - stepper.frame.width - 8, y: (backView.frame.height - stepper.frame.height)/2.0)
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -85,4 +85,7 @@
             <color red="0.96078431372549022" green="0.7686274509803922" blue="0.023529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="biu-RK-yB0"/>
+    </inferredMetricsTieBreakers>
 </document>

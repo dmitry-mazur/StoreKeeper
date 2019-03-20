@@ -19,17 +19,11 @@ class AccountManager {
             case .success(_):
                 guard let statusCode = response.response?.statusCode else { return }
                 if statusCode == 200 {
-                    print(response)
                     let json = response.result.value as! NSDictionary
-                    print(json)
-                    print(json["email"]!)
                     UserDefaults.standard.set(json["auth_token"], forKey: "authToken")
                     UserDefaults.standard.set(json["user_id"], forKey: "userID")
-                    print(UserDefaults.standard.object(forKey: "authToken")!)
                     UserDefaults.standard.set(json["email"], forKey: "email")
-                    print(UserDefaults.standard.object(forKey: "email")!)
                     UserDefaults.standard.set(params["password"], forKey: "password")
-                    print(UserDefaults.standard.object(forKey: "password")!)
                     
                     let progressView = UIActivityIndicatorView()
                     progressView.center = (self.parentViewController?.view.center)!
@@ -40,11 +34,15 @@ class AccountManager {
                     progressView.transform = CGAffineTransform(scaleX: 2, y: 2)
                     progressView.startAnimating()
                     
+                    /*
                     if json["is_keeper"] as! Bool {
                         self.parentViewController?.performSegue(withIdentifier: "adminAccountSegue", sender: nil)
                     } else {
                         self.parentViewController?.performSegue(withIdentifier: "userAccountSegue", sender: nil)
                     }
+ */
+                    
+                    self.parentViewController?.performSegue(withIdentifier: "userAccountSegue", sender: nil)
                 } else {
                     self.parentViewController?.view.makeToast("Wrong e-mail or password", duration: 3.0, position: .bottom)
                 }
@@ -61,7 +59,6 @@ class AccountManager {
             case .success(_):
                 guard let statusCode = response.response?.statusCode else { return }
                 if statusCode == 200 {
-                    print(response)
                     let json = response.result.value as! NSDictionary
                     self.login(params: ["email": json["email"]!, "password": json["password"]!])
                 } else {

@@ -20,7 +20,21 @@ extension UIViewController {
     }
 }
 
-extension UITextField{
+extension UIView {
+    func dropShadow(color: UIColor, opacity: Float = 0.5, offSet: CGSize, radius: CGFloat = 1, cornerRadius: CGFloat = 0, scale: Bool = true) {
+        layer.masksToBounds = false
+        layer.shadowColor = color.cgColor
+        layer.shadowOpacity = opacity
+        layer.shadowOffset = offSet
+        layer.shadowRadius = radius
+        
+        layer.shouldRasterize = true
+        layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: cornerRadius).cgPath
+        layer.rasterizationScale = scale ? UIScreen.main.scale : 1
+    }
+}
+
+extension UITextField {
     func underlinedLogin(color: UIColor){
         let border = CALayer()
         let width = CGFloat(1.0)
@@ -32,7 +46,7 @@ extension UITextField{
     }
 }
 
-extension LoginTextField: UITextFieldDelegate{
+extension LoginTextField: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.textColor = UIColor(named: "Accent")
         textField.underlinedLogin(color: UIColor(named: "Accent")!)
