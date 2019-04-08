@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0B15095322420ACD00D54334 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B15095222420ACD00D54334 /* Room.swift */; };
+		0B1A8FBE224B3E5800D57B3D /* ItemApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1A8FBD224B3E5800D57B3D /* ItemApi.swift */; };
 		0B64807C222D4C7B00876EE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B64807B222D4C7B00876EE1 /* AppDelegate.swift */; };
 		0B64807E222D4C7B00876EE1 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B64807D222D4C7B00876EE1 /* LoginViewController.swift */; };
 		0B648081222D4C7B00876EE1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B64807F222D4C7B00876EE1 /* Main.storyboard */; };
@@ -22,6 +23,7 @@
 		0B64809F222D504600876EE1 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B64809E222D504600876EE1 /* RegisterViewController.swift */; };
 		0B6480A1222D506000876EE1 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6480A0222D506000876EE1 /* UserViewController.swift */; };
 		0B6480A3222D507C00876EE1 /* AdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6480A2222D507C00876EE1 /* AdminViewController.swift */; };
+		0B75E1AC2244D9B800FCF066 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B75E1AB2244D9B800FCF066 /* Item.swift */; };
 		0B9AC01622365BCA003EDDC6 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9AC01522365BCA003EDDC6 /* AccountManager.swift */; };
 		CACAD0393318FA47BDFD4D51 /* Pods_StoreKeeper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B8B326990C020DACE2DA4DA /* Pods_StoreKeeper.framework */; };
 /* End PBXBuildFile section */
@@ -30,6 +32,7 @@
 		0B15095222420ACD00D54334 /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
 		0B17B62D222FBC52002D0F14 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B17B62F222FBC52002D0F14 /* Toaster.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Toaster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0B1A8FBD224B3E5800D57B3D /* ItemApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemApi.swift; sourceTree = "<group>"; };
 		0B648078222D4C7B00876EE1 /* StoreKeeper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoreKeeper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B64807B222D4C7B00876EE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0B64807D222D4C7B00876EE1 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -46,6 +49,7 @@
 		0B64809E222D504600876EE1 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		0B6480A0222D506000876EE1 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		0B6480A2222D507C00876EE1 /* AdminViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminViewController.swift; sourceTree = "<group>"; };
+		0B75E1AB2244D9B800FCF066 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		0B9AC01522365BCA003EDDC6 /* AccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
 		2CA0B381BA8BD4A99304951F /* Pods-StoreKeeper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoreKeeper.debug.xcconfig"; path = "Target Support Files/Pods-StoreKeeper/Pods-StoreKeeper.debug.xcconfig"; sourceTree = "<group>"; };
 		8B8B326990C020DACE2DA4DA /* Pods_StoreKeeper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StoreKeeper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,6 +68,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B1A8FBC224A3D0400D57B3D /* Item */ = {
+			isa = PBXGroup;
+			children = (
+				0B75E1AB2244D9B800FCF066 /* Item.swift */,
+				0B1A8FBD224B3E5800D57B3D /* ItemApi.swift */,
+			);
+			path = Item;
+			sourceTree = "<group>";
+		};
 		0B64806F222D4C7A00876EE1 = {
 			isa = PBXGroup;
 			children = (
@@ -140,6 +153,7 @@
 		0B64809D222D4FE400876EE1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0B1A8FBC224A3D0400D57B3D /* Item */,
 				0B9AC01522365BCA003EDDC6 /* AccountManager.swift */,
 				0B15095222420ACD00D54334 /* Room.swift */,
 			);
@@ -289,10 +303,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B1A8FBE224B3E5800D57B3D /* ItemApi.swift in Sources */,
 				0B6480A3222D507C00876EE1 /* AdminViewController.swift in Sources */,
 				0B64809F222D504600876EE1 /* RegisterViewController.swift in Sources */,
 				0B6480A1222D506000876EE1 /* UserViewController.swift in Sources */,
 				0B64807E222D4C7B00876EE1 /* LoginViewController.swift in Sources */,
+				0B75E1AC2244D9B800FCF066 /* Item.swift in Sources */,
 				0B648090222D4F5C00876EE1 /* Extensions.swift in Sources */,
 				0B64809A222D4FD200876EE1 /* CellClasses.swift in Sources */,
 				0B15095322420ACD00D54334 /* Room.swift in Sources */,

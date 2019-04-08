@@ -9,8 +9,8 @@
 import Foundation
 
 class Room {
-    var id = Int()
-    var number = String()
+    let id: Int
+    let number: String
     
     init(id: Int, number: String) {
         self.id = id

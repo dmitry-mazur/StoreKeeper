@@ -16,22 +16,59 @@ class UserViewController: UIViewController {
     let itemsTable = UITableView()
     let items = ["1", "1", "1", "1", "1", "1"]
     let accountManager = AccountManager()
-    
+    var itemsImages = [String: UIImage]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor(named: "Background")
-        
-        getRooms()
-        
+
         accountManager.parentViewController = self
         configureRoomNumbersTable()
         configureItemsTable()
         
-        //accountManager.logout()
+        getRooms()
+        test()
     }
     
-    func getRooms(){
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let nav = self.navigationController?.navigationBar
+        
+        nav?.barStyle = .blackOpaque
+        nav?.backgroundColor = UIColor(named: "Background")
+        nav?.tintColor = UIColor(named: "Accent")
+        nav?.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "Accent")!]
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "logout"), style: .done, target: self, action: #selector(logout))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "refresh"), style: .done, target: self, action: #selector(refresh))
+    }
+    
+    @objc func logout() {
+        accountManager.logout()
+    }
+    
+    @objc func refresh() {
+        self.navigationItem.leftBarButtonItem?.isEnabled = false
+        getRooms()
+    }
+    
+    func test(){
+        var json: NSDictionary?
+        
+        ItemApi.getRoomItems(id: 3, completionHandler: { responseObject, error in
+            if responseObject != nil {
+                json = responseObject
+                print(json)
+            } else {
+                print(error)
+            }
+            return
+        })
+    }
+    
+    func getRooms() {
+        rooms = []
         let api = "\(Global.AppUrl.url)/rooms"
         let headers: HTTPHeaders = [
             "access_token": "\(UserDefaults.standard.object(forKey: "authToken")!)",
@@ -45,6 +82,7 @@ class UserViewController: UIViewController {
                 self.rooms.append(Room(id: room["room_id"] as! Int, number: room["number"] as! String))
             }
             self.roomNumbersTable.reloadData()
+            self.navigationItem.leftBarButtonItem?.isEnabled = true
         }
     }
     
@@ -56,9 +94,9 @@ class UserViewController: UIViewController {
         roomNumbersTable.showsVerticalScrollIndicator = false
         roomNumbersTable.allowsSelection = false
         roomNumbersTable.register(RoomNumberCell.self, forCellReuseIdentifier: "roomNumberCell")
-        roomNumbersTable.frame = CGRect(x: 8, y: UIApplication.shared.statusBarFrame.height + 8, width: UIScreen.main.bounds.width*0.3 - 16, height: UIScreen.main.bounds.height - UIApplication.shared.statusBarFrame.height - 16)
+        roomNumbersTable.frame = CGRect(x: 8, y: 8 + UIApplication.shared.statusBarFrame.height + navigationController!.navigationBar.frame.height, width: UIScreen.main.bounds.width*0.3 - 16, height: UIScreen.main.bounds.height - UIApplication.shared.statusBarFrame.height - navigationController!.navigationBar.frame.height - 16)
         roomNumbersTable.tableFooterView = UIView()
-        roomNumbersTable.layer.cornerRadius = 4
+        roomNumbersTable.layer.cornerRadius = 8
         self.view.addSubview(roomNumbersTable)
     }
     
@@ -72,7 +110,7 @@ class UserViewController: UIViewController {
         itemsTable.register(ItemCell.self, forCellReuseIdentifier: "itemCell")
         itemsTable.frame = CGRect(x: roomNumbersTable.frame.origin.x + roomNumbersTable.frame.width + 8, y: roomNumbersTable.frame.origin.y, width: UIScreen.main.bounds.width - roomNumbersTable.frame.width - roomNumbersTable.frame.origin.x - 16, height: roomNumbersTable.frame.height)
         itemsTable.tableFooterView = UIView()
-        itemsTable.layer.cornerRadius = 4
+        itemsTable.layer.cornerRadius = 8
         self.view.addSubview(itemsTable)
     }
 }

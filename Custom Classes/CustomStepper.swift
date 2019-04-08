@@ -14,7 +14,7 @@ class CustomStepper: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor(named: "Primary")
+        self.backgroundColor = #colorLiteral(red: 0.937254902, green: 0.9058823529, blue: 0.662745098, alpha: 1)
     }
     
     func configureStepButton(){
@@ -22,6 +22,7 @@ class CustomStepper: UIView {
         stepButton.frame.origin = CGPoint(x: (self.frame.width - stepButton.frame.width)/2.0, y: 0)
         stepButton.backgroundColor = UIColor(named: "Accent")
         stepButton.layer.cornerRadius = stepButton.frame.height/2.0
+        stepButton.setTitleColor(.black, for: .normal)
         stepButton.setTitle("20", for: .normal)
         
         let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeAction(swipe:)))
@@ -42,13 +43,15 @@ class CustomStepper: UIView {
         
         let minusButton = UIButton(frame: CGRect(x: 0, y: -self.frame.height*0.05, width: self.frame.height, height: self.frame.height))
         minusButton.setTitle("-", for: .normal)
-        minusButton.titleLabel?.font = UIFont(name: "HelveticaNeue", size: minusButton.frame.height)
+        minusButton.setTitleColor(.black, for: .normal)
+        minusButton.titleLabel?.font = UIFont(name: "HelveticaNeue", size: minusButton.frame.height*0.7)
         minusButton.addTarget(self, action: #selector(leftAnimation), for: .touchUpInside)
         self.addSubview(minusButton)
         
-        let plusButton = UIButton(frame: CGRect(x: self.frame.width - self.frame.height, y: -self.frame.height*0.1, width: self.frame.height, height: self.frame.height))
+        let plusButton = UIButton(frame: CGRect(x: self.frame.width - self.frame.height, y: -self.frame.height*0.05, width: self.frame.height, height: self.frame.height))
         plusButton.setTitle("+", for: .normal)
-        plusButton.titleLabel?.font = UIFont(name: "HelveticaNeue", size: plusButton.frame.height)
+        plusButton.setTitleColor(.black, for: .normal)
+        plusButton.titleLabel?.font = UIFont(name: "HelveticaNeue", size: plusButton.frame.height*0.7)
         plusButton.addTarget(self, action: #selector(rightAnimate), for: .touchUpInside)
         self.addSubview(plusButton)
         

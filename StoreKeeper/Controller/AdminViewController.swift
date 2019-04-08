@@ -10,9 +10,11 @@ import UIKit
 
 class AdminViewController: UIViewController {
     
+    let bview = UIView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         
     }
 }
